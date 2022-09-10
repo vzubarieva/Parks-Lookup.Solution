@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Park_Lookup.Models;
@@ -19,7 +20,7 @@ namespace Park_Lookup.Controllers
       _db = db;
     }
 
-    [HttpGet]
+    [HttpGet("by")]
     public async Task<ActionResult<IEnumerable<Park>>> Get(string type)
     {
       var query = _db.Parks.AsQueryable();
@@ -30,6 +31,18 @@ namespace Park_Lookup.Controllers
       }
       return await query.ToListAsync();
     }
+
+    [HttpGet]
+public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter)
+{
+   var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+   var pagedData = await _db.Parks
+        .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+        .Take(validFilter.PageSize)
+        .ToListAsync();
+    var totalRecords = await _db.Parks.CountAsync();
+    return Ok(new PagedResponse<List<Park>>(pagedData, validFilter.PageNumber, validFilter.PageSize));
+}
 
     [HttpPost]
     public async Task<ActionResult<Park>> Post(Park park)
@@ -50,7 +63,8 @@ namespace Park_Lookup.Controllers
         return NotFound();
     }
 
-      return CreatedAtAction(nameof(GetPark), new { id = park.ParkId }, park);;
+      // var park = await _db.Parks.Where(a => a.Id == id).FirstOrDefaultAsync();
+    return Ok(new Response<Park>(park));
     }
 
     [HttpPut("{id}")]
