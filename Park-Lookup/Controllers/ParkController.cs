@@ -1,3 +1,5 @@
+using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -5,19 +7,33 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Park_Lookup.Models;
+using Pagination.WebApi.Helpers;
 
 namespace Park_Lookup.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class ParksController : ControllerBase
+  public class ParkController : ControllerBase
   {
     private readonly Park_LookupContext _db;
+     private readonly IUriService uriService;
+     public ParkController(Park_LookupContext db, IUriService uriService)
+     {
+        _db = db;
+       this.uriService = uriService;
+     }
 
-
-    public ParksController(Park_LookupContext db)
+     [HttpGet]
+    public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter)
     {
-      _db = db;
+          var route = Request.Path.Value;
+      var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+      var pagedData = await _db.Parks
+        .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+        .Take(validFilter.PageSize)
+        .ToListAsync();
+      var pagedResponse = PaginationHelper.CreatePagedResponse<Customer>(pagedData, validFilter, totalRecords, uriService, route);
+      return Ok(pagedResponse);
     }
 
     [HttpGet("by")]
@@ -32,17 +48,7 @@ namespace Park_Lookup.Controllers
       return await query.ToListAsync();
     }
 
-    [HttpGet]
-public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter)
-{
-   var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-   var pagedData = await _db.Parks
-        .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
-        .Take(validFilter.PageSize)
-        .ToListAsync();
-    var totalRecords = await _db.Parks.CountAsync();
-    return Ok(new PagedResponse<List<Park>>(pagedData, validFilter.PageNumber, validFilter.PageSize));
-}
+   
 
     [HttpPost]
     public async Task<ActionResult<Park>> Post(Park park)
