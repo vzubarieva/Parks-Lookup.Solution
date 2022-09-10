@@ -8,5 +8,6 @@ namespace Park_Lookup.Models
         public int ParkId { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
+        public string Location { get; set; }
     }
 }
