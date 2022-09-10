@@ -20,56 +20,56 @@ namespace Park_Lookup.Models
                 { 
                     ParkId = 1,
                      Name = "Bridle Trails State Park", 
-                     Type = "State park",
+                     Type = "State",
                      Location = "Washington state"
                 },
                 new Park 
                 { 
                     ParkId = 2,
                      Name = "Lake Sammamish State Park", 
-                     Type = "State park",
+                     Type = "State",
                      Location = "Washington state"
                 },
                 new Park 
                 { 
                     ParkId = 3,
                      Name = "Saint Edward State Park", 
-                     Type = "State park",
+                     Type = "State",
                      Location = "Washington state"
                 },
                 new Park 
                 { 
                     ParkId = 4,
                      Name = "Bear Creek Park", 
-                     Type = "State park",
+                     Type = "State",
                      Location = "Washington state"
                 },
                 new Park 
                 { 
                     ParkId = 5,
                      Name = "Olympic National Park", 
-                     Type = "National park",
+                     Type = "National",
                      Location = "Washington state"
                 },
                 new Park 
                 { 
                     ParkId = 6,
                      Name = "Mount Rainier National Park", 
-                     Type = "National park",
+                     Type = "National",
                      Location = "Washington state"
                 },
                 new Park 
                 { 
                     ParkId = 7,
                      Name = "North Cascades National Park", 
-                     Type = "National park",
+                     Type = "National",
                      Location = "Washington state"
                 },
                 new Park 
                 { 
                     ParkId = 8,
                      Name = "Crater Lake National Park", 
-                     Type = "National park",
+                     Type = "National",
                      Location = "Oregon state"
                 }     
              );
