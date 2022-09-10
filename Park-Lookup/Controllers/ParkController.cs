@@ -18,14 +18,12 @@ namespace Park_Lookup.Controllers
       _db = db;
     }
 
-    // GET api/animals
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Park>>> Get()
     {
       return await _db.Parks.ToListAsync();
     }
 
-    // POST api/animals
     [HttpPost]
     public async Task<ActionResult<Park>> Post(Park park)
     {
