@@ -9,7 +9,7 @@ This API is included full CRUD functionality, pagination to make sure responses 
 
 ![project-screenshot](Park-Lookup/img/Screenshot.png)
 
-![project-screenshot1](Park-Lookup/img/Screenshot 2022-09-10 191048.png)
+![project-screenshot1](Park-Lookup/img/Screenshot2022-09-10.png)
 
 ## Technologies Used
 
