@@ -5,9 +5,9 @@
 ## Description
 
 An API for state and national parks. The API is able to list state and national parks.
-This API is included full CRUD functionality and pagination to make sure responses are easier to handle.
+This API is included full CRUD functionality, pagination to make sure responses are easier to handle amd swagger to present the functionality of the API in a more manageable package.
 
-![project-screenshot](SweetAndSavory/wwwroot/img/Screenshot.png)
+![project-screenshot](Park-Lookup/img/Screenshot.png)
 
 ## Technologies Used
 
@@ -24,9 +24,9 @@ This API is included full CRUD functionality and pagination to make sure respons
 
 ## Setup/Installation Requirements
 
-- Clone this project to your desktop with the link provided on the its Github [repository](https://github.com/vzubarieva/Pierre-s-Sweet-and-Savory-Treats.Solution)
+- Clone this project to your desktop with the link provided on the its Github [repository](https://github.com/vzubarieva/Parks-Lookup.Solution)
 - Navigate to the top level of the directory
-- Create appsettings.json in Pierre-s-Sweet-and-Savory-Treats.Solution /SweetAndSavory/ directory
+- Create appsettings.json in Parks-Lookup.Solution/Park-Lookup/directory
 
 - Copy this code into appsettings.json, replacing YOUR_PASSWORD with your MySQL password
   { "ConnectionStrings": { "DefaultConnection": "Server=localhost;Port=3306;database=factory;uid=root;pwd=YOUR_PASSWORD;" } }
@@ -37,7 +37,7 @@ This API is included full CRUD functionality and pagination to make sure respons
 
 - open MySQL Workbench
 
-- In terminal, navigate into Pierre-s-Sweet-and-Savory-Treats.Solution /SweetAndSavory/ and enter this command, to install necessary packages
+- In terminal, navigate into Parks-Lookup.Solution/Park-Lookup/ and enter this command, to install necessary packages
 
   $ dotnet restore
 
