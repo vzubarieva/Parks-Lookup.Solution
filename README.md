@@ -5,8 +5,7 @@
 ## Description
 
 An API for state and national parks. The API is able to list state and national parks.
-
-API is included full CRUD functionality and pagination.
+This API is included full CRUD functionality and pagination to make sure responses are easier to handle.
 
 ![project-screenshot](SweetAndSavory/wwwroot/img/Screenshot.png)
 
@@ -25,7 +24,48 @@ API is included full CRUD functionality and pagination.
 
 ## Setup/Installation Requirements
 
--
+- Clone this project to your desktop with the link provided on the its Github [repository](https://github.com/vzubarieva/Pierre-s-Sweet-and-Savory-Treats.Solution)
+- Navigate to the top level of the directory
+- Create appsettings.json in Pierre-s-Sweet-and-Savory-Treats.Solution /SweetAndSavory/ directory
+
+- Copy this code into appsettings.json, replacing YOUR_PASSWORD with your MySQL password
+  { "ConnectionStrings": { "DefaultConnection": "Server=localhost;Port=3306;database=factory;uid=root;pwd=YOUR_PASSWORD;" } }
+
+- open new terminal and run SQL
+
+  $ mysql -uroot -p{your_password}
+
+- open MySQL Workbench
+
+- In terminal, navigate into Pierre-s-Sweet-and-Savory-Treats.Solution /SweetAndSavory/ and enter this command, to install necessary packages
+
+  $ dotnet restore
+
+- enter this command to build the program
+
+  $ dotnet build
+
+- enter this command to build your database
+
+  $ dotnet ef database update
+
+- check MySql Workbench to make sure the correct database has built
+
+- enter this command to view this application in your browser
+
+  $ dotnet run
+
+- endpoints available
+  - GET /api/Parks
+    - filters available
+      - int `pageNumber`
+      - int `pageSize`
+      - string `type` (for example 'national' / 'state')
+      - sample endpoint with all filters `/api/Parks?pageNumber=1&pageSize=2&type=national`
+  - GET /api/Parks/{id}
+  - POST /api/Parks/{id}
+  - PUT /api/Parks/{id}
+  - DELETE /api/Parks/{id}
 
 ## Known Bugs
 
